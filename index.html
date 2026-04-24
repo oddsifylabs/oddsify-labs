@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oddsify Labs — Sports Analytics & Betting Intelligence</title>
-    <meta name="description" content="Advanced data-driven sports analytics and betting intelligence. Predictive modeling, real-time alerts, and AI-powered insights for smarter decisions.">
-    <meta name="keywords" content="sports analytics, betting intelligence, predictive modeling, sports data, AI betting">
+    <title>Oddsify Labs — Sports Analytics, Betting Intelligence & AI Tools</title>
+    <meta name="description" content="Oddsify Labs builds AlexBET Terminal, AlexBET Sharp, Edge Unit, and open-source tools for the sports betting community. Ebooks, bots, trackers, and local AI hardware.">
+    <meta name="keywords" content="sports betting, analytics, AlexBET, Edge Unit, HAMH, open source, betting tracker, Telegram bot, AI betting">
     <meta property="og:title" content="Oddsify Labs — Sports Analytics & Betting Intelligence">
-    <meta property="og:description" content="Advanced data-driven insights for smarter betting decisions.">
+    <meta property="og:description" content="Software, hardware, and knowledge built for serious bettors.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://oddsifylabs.com">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%AF%3C/text%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎯%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -36,16 +36,8 @@
             --gradient-3: #06b6d4;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
@@ -53,968 +45,237 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+        ::selection { background: var(--accent); color: white; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-        ::selection {
-            background: var(--accent);
-            color: white;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-hover);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent);
-        }
-
-        /* Background canvas */
         #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.4;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+            pointer-events: none; opacity: 0.4;
         }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Navigation */
+        /* Nav */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(10, 14, 26, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            transition: all 0.3s ease;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(10, 14, 26, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border); transition: all 0.3s ease;
         }
-
-        nav.scrolled {
-            background: rgba(10, 14, 26, 0.95);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 24px;
-        }
-
+        nav.scrolled { background: rgba(10, 14, 26, 0.95); box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
+        nav .container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 24px; }
         .logo {
-            font-size: 26px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
+            font-size: 26px; font-weight: 800; letter-spacing: -0.5px;
             background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            cursor: pointer;
-            transition: opacity 0.3s;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            cursor: pointer; transition: opacity 0.3s;
         }
-
-        .logo:hover {
-            opacity: 0.8;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 36px;
-            align-items: center;
-        }
-
+        .logo:hover { opacity: 0.8; }
+        .nav-links { display: flex; list-style: none; gap: 36px; align-items: center; }
         .nav-links a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 14px;
-            transition: color 0.3s;
-            position: relative;
+            text-decoration: none; color: var(--text-secondary); font-weight: 500; font-size: 14px;
+            transition: color 0.3s; position: relative;
         }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a:hover::after { width: 100%; }
         .nav-cta {
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-            color: white;
-            padding: 10px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2)); color: white;
+            padding: 10px 24px; border-radius: 8px; font-weight: 600; font-size: 14px;
+            text-decoration: none; transition: all 0.3s ease; border: none; cursor: pointer;
             box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
-
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 24px;
-            cursor: pointer;
-        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4); }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-primary); font-size: 24px; cursor: pointer; }
 
         /* Hero */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 24px 80px;
-            position: relative;
-            overflow: hidden;
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 120px 24px 80px; position: relative; overflow: hidden;
         }
-
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid var(--border);
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--accent-light);
-            margin-bottom: 32px;
-            animation: fadeInUp 0.8s ease-out;
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(59, 130, 246, 0.1); border: 1px solid var(--border);
+            padding: 8px 20px; border-radius: 100px; font-size: 13px; font-weight: 500;
+            color: var(--accent-light); margin-bottom: 32px; animation: fadeInUp 0.8s ease-out;
         }
+        .hero-badge .pulse { width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+        .hero h1 { font-size: clamp(40px, 6vw, 72px); font-weight: 900; line-height: 1.1; letter-spacing: -2px; margin-bottom: 24px; animation: fadeInUp 0.8s ease-out 0.1s both; }
+        .hero h1 .gradient-text { background: linear-gradient(135deg, var(--gradient-1) 0%, var(--gradient-2) 50%, var(--gradient-3) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero p { font-size: clamp(16px, 2vw, 20px); color: var(--text-secondary); max-width: 640px; margin: 0 auto 40px; animation: fadeInUp 0.8s ease-out 0.2s both; }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.8s ease-out 0.3s both; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 12px; font-weight: 600; font-size: 16px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2)); color: white; box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(59, 130, 246, 0.5); }
+        .btn-secondary { background: rgba(255,255,255,0.05); color: var(--text-primary); border: 1px solid var(--border); backdrop-filter: blur(10px); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: var(--border-hover); }
+        .hero-stats { display: flex; justify-content: center; gap: 48px; margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--border); animation: fadeInUp 0.8s ease-out 0.5s both; flex-wrap: wrap; }
+        .hero-stat { text-align: center; }
+        .hero-stat-number { font-family: 'JetBrains Mono', monospace; font-size: 32px; font-weight: 700; background: linear-gradient(135deg, var(--accent-light), var(--gradient-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-stat-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
 
-        .hero-badge .pulse {
-            width: 8px;
-            height: 8px;
-            background: var(--success);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
+        /* Sections */
+        section { padding: 100px 0; position: relative; }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 64px; }
+        .section-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; color: var(--accent-light); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+        .section-header h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
+        .section-header p { color: var(--text-secondary); font-size: 17px; line-height: 1.7; }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .hero h1 {
-            font-size: clamp(40px, 6vw, 72px);
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            margin-bottom: 24px;
-            animation: fadeInUp 0.8s ease-out 0.1s both;
-        }
-
-        .hero h1 .gradient-text {
-            background: linear-gradient(135deg, var(--gradient-1) 0%, var(--gradient-2) 50%, var(--gradient-3) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: clamp(16px, 2vw, 20px);
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease-out 0.3s both;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 32px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 16px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-            color: white;
-            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.5);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--border-hover);
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 48px;
-            margin-top: 80px;
-            padding-top: 40px;
-            border-top: 1px solid var(--border);
-            animation: fadeInUp 0.8s ease-out 0.5s both;
-        }
-
-        .hero-stat {
-            text-align: center;
-        }
-
-        .hero-stat-number {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 32px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-light), var(--gradient-2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-stat-label {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Section styling */
-        section {
-            padding: 100px 0;
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 640px;
-            margin: 0 auto 64px;
-        }
-
-        .section-tag {
-            display: inline-block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--accent-light);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 16px;
-        }
-
-        .section-header h2 {
-            font-size: clamp(28px, 4vw, 42px);
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 16px;
-        }
-
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 17px;
-            line-height: 1.7;
-        }
-
-        /* Products */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 24px;
-        }
-
+        /* Product Cards */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
         .product-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px;
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1); position: relative; overflow: hidden; backdrop-filter: blur(10px);
         }
+        .product-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0; transition: opacity 0.4s; }
+        .product-card:hover { transform: translateY(-4px); border-color: var(--border-hover); box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px var(--accent-glow); }
+        .product-card:hover::before { opacity: 1; }
+        .product-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; background: rgba(59, 130, 246, 0.1); border: 1px solid var(--border); }
+        .product-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .product-card p { color: var(--text-secondary); font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
+        .product-features { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .feature-tag { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px; background: rgba(59, 130, 246, 0.08); color: var(--accent-light); border: 1px solid var(--border); }
+        .feature-tag.accent-green { background: rgba(16, 185, 129, 0.08); color: #34d399; border-color: rgba(16, 185, 129, 0.2); }
+        .feature-tag.accent-orange { background: rgba(245, 158, 11, 0.08); color: #fbbf24; border-color: rgba(245, 158, 11, 0.2); }
+        .product-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .product-actions a, .product-actions button {
+            font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 8px; text-decoration: none;
+            transition: all 0.3s ease; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .btn-small-primary { background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2)); color: white; }
+        .btn-small-primary:hover { box-shadow: 0 4px 15px rgba(59,130,246,0.35); transform: translateY(-1px); }
+        .btn-small-secondary { background: transparent; color: var(--text-secondary); border: 1px solid var(--border); }
+        .btn-small-secondary:hover { color: var(--text-primary); border-color: var(--border-hover); background: rgba(255,255,255,0.03); }
+        .coming-soon-badge { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 10px; border-radius: 6px; background: rgba(245,158,11,0.1); color: var(--warning); border: 1px solid rgba(245,158,11,0.2); }
 
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            opacity: 0;
-            transition: opacity 0.4s;
+        /* Knowledge Products */
+        .knowledge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .knowledge-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px;
+            transition: all 0.3s ease; position: relative;
         }
+        .knowledge-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
+        .knowledge-card h4 { font-size: 17px; font-weight: 700; margin-bottom: 10px; line-height: 1.4; }
+        .knowledge-card p { color: var(--text-secondary); font-size: 13px; line-height: 1.65; margin-bottom: 18px; }
+        .knowledge-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .knowledge-meta .store-link { font-size: 12px; font-weight: 600; color: var(--accent-light); text-decoration: none; }
+        .knowledge-meta .store-link:hover { text-decoration: underline; }
 
-        .product-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--border-hover);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px var(--accent-glow);
-        }
+        /* How it works */
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .service-card { position: relative; padding: 32px; border-radius: 16px; background: var(--bg-card); border: 1px solid var(--border); transition: all 0.4s ease; }
+        .service-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+        .service-number { font-family: 'JetBrains Mono', monospace; font-size: 48px; font-weight: 700; color: rgba(59,130,246,0.15); line-height: 1; margin-bottom: 16px; }
+        .service-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+        .service-card p { color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
 
-        .product-card:hover::before {
-            opacity: 1;
-        }
-
-        .product-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid var(--border);
-        }
-
-        .product-card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .product-card p {
-            color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .product-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .feature-tag {
-            font-size: 11px;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 6px;
-            background: rgba(59, 130, 246, 0.08);
-            color: var(--accent-light);
-            border: 1px solid var(--border);
-        }
-
-        /* Services / How it works */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .service-card {
-            position: relative;
-            padding: 32px;
-            border-radius: 16px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            transition: all 0.4s ease;
-        }
-
-        .service-card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-4px);
-        }
-
-        .service-number {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 48px;
-            font-weight: 700;
-            color: rgba(59, 130, 246, 0.15);
-            line-height: 1;
-            margin-bottom: 16px;
-        }
-
-        .service-card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .service-card p {
-            color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.7;
-        }
-
-        /* Stats Section */
-        .stats-section {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 32px;
-        }
-
-        .stat-box {
-            text-align: center;
-            padding: 24px;
-        }
-
-        .stat-box-number {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 42px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-light), var(--gradient-2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
-        }
-
-        .stat-box-label {
-            color: var(--text-muted);
-            font-size: 14px;
-            font-weight: 500;
-        }
+        /* Stats */
+        .stats-section { background: linear-gradient(135deg, rgba(59,130,246,0.05), rgba(139,92,246,0.05)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+        .stat-box { text-align: center; padding: 24px; }
+        .stat-box-number { font-family: 'JetBrains Mono', monospace; font-size: 42px; font-weight: 700; background: linear-gradient(135deg, var(--accent-light), var(--gradient-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+        .stat-box-label { color: var(--text-muted); font-size: 14px; font-weight: 500; }
 
         /* Pricing */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            max-width: 960px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 40px 32px;
-            position: relative;
-            transition: all 0.4s ease;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--border-hover);
-        }
-
-        .pricing-card.popular {
-            border-color: var(--accent);
-            box-shadow: 0 0 40px rgba(59, 130, 246, 0.1);
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-            color: white;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 6px 16px;
-            border-radius: 100px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .pricing-name {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .pricing-desc {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 24px;
-        }
-
-        .pricing-price {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 24px;
-        }
-
-        .pricing-price span {
-            font-size: 16px;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 32px;
-        }
-
-        .pricing-features li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 0;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        .pricing-features li::before {
-            content: '✓';
-            color: var(--success);
-            font-weight: 700;
-        }
-
-        .pricing-btn {
-            width: 100%;
-            padding: 14px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s ease;
-        }
-
-        .pricing-btn-primary {
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-            color: white;
-        }
-
-        .pricing-btn-primary:hover {
-            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .pricing-btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-        }
-
-        .pricing-btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--border-hover);
-        }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 960px; margin: 0 auto; }
+        .pricing-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 40px 32px; position: relative; transition: all 0.4s ease; }
+        .pricing-card:hover { transform: translateY(-4px); border-color: var(--border-hover); }
+        .pricing-card.popular { border-color: var(--accent); box-shadow: 0 0 40px rgba(59,130,246,0.1); }
+        .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2)); color: white; font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: 100px; text-transform: uppercase; letter-spacing: 1px; }
+        .pricing-name { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+        .pricing-desc { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+        .pricing-price { font-family: 'JetBrains Mono', monospace; font-size: 48px; font-weight: 700; margin-bottom: 24px; }
+        .pricing-price span { font-size: 16px; color: var(--text-muted); font-weight: 400; }
+        .pricing-features { list-style: none; margin-bottom: 32px; }
+        .pricing-features li { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 14px; color: var(--text-secondary); }
+        .pricing-features li::before { content: '✓'; color: var(--success); font-weight: 700; }
+        .pricing-btn { width: 100%; padding: 14px; border-radius: 10px; font-weight: 600; font-size: 15px; cursor: pointer; border: none; transition: all 0.3s ease; }
+        .pricing-btn-primary { background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2)); color: white; }
+        .pricing-btn-primary:hover { box-shadow: 0 4px 20px rgba(59,130,246,0.4); transform: translateY(-2px); }
+        .pricing-btn-secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
+        .pricing-btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: var(--border-hover); }
 
         /* Testimonials */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .testimonial-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; transition: all 0.3s ease; }
+        .testimonial-card:hover { border-color: var(--border-hover); }
+        .testimonial-stars { color: var(--warning); font-size: 16px; margin-bottom: 16px; letter-spacing: 2px; }
+        .testimonial-text { color: var(--text-secondary); font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+        .testimonial-author { display: flex; align-items: center; gap: 12px; }
+        .testimonial-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+        .testimonial-name { font-weight: 600; font-size: 14px; }
+        .testimonial-role { color: var(--text-muted); font-size: 13px; }
 
-        .testimonial-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            transition: all 0.3s ease;
+        /* Open Source Banner */
+        .opensource-banner {
+            background: linear-gradient(135deg, rgba(16,185,129,0.05), rgba(59,130,246,0.05));
+            border: 1px solid rgba(16,185,129,0.15); border-radius: 16px; padding: 40px;
+            text-align: center; max-width: 800px; margin: 0 auto;
         }
-
-        .testimonial-card:hover {
-            border-color: var(--border-hover);
-        }
-
-        .testimonial-stars {
-            color: var(--warning);
-            font-size: 16px;
-            margin-bottom: 16px;
-            letter-spacing: 2px;
-        }
-
-        .testimonial-text {
-            color: var(--text-secondary);
-            font-size: 15px;
-            line-height: 1.7;
-            margin-bottom: 24px;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .testimonial-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 14px;
-            color: white;
-        }
-
-        .testimonial-name {
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .testimonial-role {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
+        .opensource-banner h3 { font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+        .opensource-banner p { color: var(--text-secondary); font-size: 15px; margin-bottom: 24px; }
+        .opensource-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
 
         /* Contact */
-        .contact-section {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.03), rgba(139, 92, 246, 0.03));
+        .contact-section { background: linear-gradient(180deg, transparent, rgba(59,130,246,0.03)); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+        .contact-info h3 { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
+        .contact-info p { color: var(--text-secondary); font-size: 15px; line-height: 1.7; margin-bottom: 32px; }
+        .contact-method { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+        .contact-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(59,130,246,0.1); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .contact-method strong { font-size: 14px; color: var(--text-primary); }
+        .contact-method span { font-size: 14px; color: var(--text-muted); }
+        .contact-form { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 40px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03); color: var(--text-primary); font-size: 15px; font-family: inherit;
+            transition: border-color 0.3s;
         }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: start;
-        }
-
-        .contact-info h3 {
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
-        .contact-info > p {
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-            line-height: 1.7;
-        }
-
-        .contact-method {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .contact-method:last-child {
-            border-bottom: none;
-        }
-
-        .contact-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-        }
-
-        .contact-method div strong {
-            font-size: 14px;
-            color: var(--text-primary);
-        }
-
-        .contact-method div span {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .contact-form {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 14px 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            color: var(--text-primary);
-            font-family: inherit;
-            font-size: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--text-muted);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .form-success {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
-            padding: 16px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            display: none;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .form-success.visible {
-            display: flex;
-        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-muted); }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+        .submit-btn { width: 100%; padding: 14px; border-radius: 10px; background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2)); color: white; font-weight: 600; font-size: 15px; border: none; cursor: pointer; transition: all 0.3s ease; }
+        .submit-btn:hover { box-shadow: 0 4px 20px rgba(59,130,246,0.4); transform: translateY(-2px); }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .form-success { display: none; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); color: #34d399; padding: 16px; border-radius: 10px; margin-bottom: 20px; font-weight: 500; text-align: center; }
+        .form-success.visible { display: block; animation: fadeInUp 0.4s ease; }
 
         /* Footer */
-        footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-            padding: 60px 0 30px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 48px;
-            margin-bottom: 48px;
-        }
-
-        .footer-brand .logo {
-            margin-bottom: 16px;
-            display: inline-block;
-        }
-
-        .footer-brand p {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.7;
-            max-width: 280px;
-        }
-
-        .footer-col h4 {
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col li {
-            margin-bottom: 12px;
-        }
-
-        .footer-col a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .footer-col a:hover {
-            color: var(--accent-light);
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 24px;
-            border-top: 1px solid var(--border);
-        }
-
-        .footer-bottom p {
-            color: var(--text-muted);
-            font-size: 13px;
-        }
+        footer { padding: 60px 0 30px; border-top: 1px solid var(--border); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+        .footer-brand .logo { margin-bottom: 16px; display: inline-block; }
+        .footer-brand p { color: var(--text-muted); font-size: 14px; line-height: 1.7; max-width: 280px; }
+        .footer-col h4 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: var(--text-primary); }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 12px; }
+        .footer-col a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--accent-light); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid var(--border); }
+        .footer-bottom p { color: var(--text-muted); font-size: 13px; }
 
         /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
 
         /* Mobile */
         @media (max-width: 1024px) {
-            .services-grid,
-            .testimonials-grid,
-            .pricing-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .services-grid, .testimonials-grid, .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid { gap: 40px; }
         }
-
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(10, 14, 26, 0.98);
-                flex-direction: column;
-                padding: 24px;
-                gap: 20px;
-                border-bottom: 1px solid var(--border);
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .mobile-menu-btn {
-                display: block;
-            }
-            .hero-stats {
-                flex-direction: column;
-                gap: 24px;
-            }
-            .products-grid,
-            .services-grid,
-            .testimonials-grid,
-            .pricing-grid,
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            .contact-grid,
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                gap: 16px;
-                text-align: center;
-            }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(10,14,26,0.98); flex-direction: column; padding: 24px; gap: 20px; border-bottom: 1px solid var(--border); }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .hero-stats { flex-direction: column; gap: 24px; }
+            .products-grid, .services-grid, .testimonials-grid, .pricing-grid, .stats-grid, .knowledge-grid { grid-template-columns: 1fr; }
+            .contact-grid, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
         }
     </style>
 </head>
@@ -1024,12 +285,12 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="container">
-            <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Oddsify</div>
+            <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Oddsify</div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#products">Products</a></li>
-                <li><a href="#services">How It Works</a></li>
+                <li><a href="#knowledge">Guides</a></li>
+                <li><a href="#open-source">Open Source</a></li>
                 <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact" class="nav-cta">Get Started</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
@@ -1039,36 +300,18 @@
     <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <div class="hero-badge">
-                <span class="pulse"></span>
-                Live Analytics Platform
-            </div>
-            <h1>
-                Sports Intelligence<br>
-                <span class="gradient-text">Powered by AI</span>
-            </h1>
-            <p>Transform raw sports data into actionable betting intelligence. Our AI models analyze millions of data points to surface edge others miss.</p>
+            <div class="hero-badge"><span class="pulse"></span> Built for the Sports Betting Community</div>
+            <h1>Software, Hardware &<br><span class="gradient-text">Betting Intelligence</span></h1>
+            <p>Oddsify Labs builds the tools serious bettors actually use. Terminals, bots, trackers, open-source apps, and field-tested knowledge products. No fluff — just edge.</p>
             <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Start Free Trial →</a>
-                <a href="#products" class="btn btn-secondary">Explore Products</a>
+                <a href="#products" class="btn btn-primary">Explore Products →</a>
+                <a href="https://github.com/oddsifylabs" target="_blank" class="btn btn-secondary">GitHub</a>
             </div>
             <div class="hero-stats">
-                <div class="hero-stat">
-                    <div class="hero-stat-number" data-count="12500">0</div>
-                    <div class="hero-stat-label">Active Traders</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-number" data-count="99.9" data-suffix="%">0</div>
-                    <div class="hero-stat-label">Uptime</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-number" data-count="52" data-suffix="+">0</div>
-                    <div class="hero-stat-label">Leagues Covered</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-number" data-count="2.5" data-suffix="M+" data-prefix="$">0</div>
-                    <div class="hero-stat-label">Daily Volume Tracked</div>
-                </div>
+                <div class="hero-stat"><div class="hero-stat-number" data-count="6" data-suffix="">0</div><div class="hero-stat-label">Products Live</div></div>
+                <div class="hero-stat"><div class="hero-stat-number" data-count="4" data-suffix="">0</div><div class="hero-stat-label">Knowledge Products</div></div>
+                <div class="hero-stat"><div class="hero-stat-number" data-count="2" data-suffix="">0</div><div class="hero-stat-label">Open Source MIT</div></div>
+                <div class="hero-stat"><div class="hero-stat-number" data-count="1" data-suffix="">0</div><div class="hero-stat-label">Hardware Line</div></div>
             </div>
         </div>
     </section>
@@ -1079,67 +322,155 @@
             <div class="section-header animate-on-scroll">
                 <div class="section-tag">Products</div>
                 <h2>Everything You Need to Win</h2>
-                <p>A complete toolkit for serious sports bettors. From real-time data to predictive models, we've built the infrastructure so you can focus on execution.</p>
+                <p>From local intelligence terminals to Telegram bots and open-source trackers. Each tool is built for real bettors, not tourists.</p>
             </div>
             <div class="products-grid">
+                <!-- AlexBET Terminal -->
                 <div class="product-card animate-on-scroll">
-                    <div class="product-icon">📊</div>
-                    <h3>AlexBet Analytics</h3>
-                    <p>Real-time sports data analysis and predictive modeling. Comprehensive insights into team performance, player statistics, and betting trends updated every second.</p>
+                    <div class="product-icon">🖥️</div>
+                    <h3>AlexBET Terminal <span class="coming-soon-badge">Waitlist</span></h3>
+                    <p>The intelligence terminal that runs locally. Live odds, props, public money, injury analysis, weather, line movement alerts, and AI game breakdowns. Your data never leaves your machine.</p>
                     <div class="product-features">
+                        <span class="feature-tag">Local-First</span>
                         <span class="feature-tag">Live Odds</span>
-                        <span class="feature-tag">Predictions</span>
-                        <span class="feature-tag">Trends</span>
+                        <span class="feature-tag">AI Analysis</span>
+                        <span class="feature-tag">CLV Tracker</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="#contact" class="btn-small-primary">Join Waitlist</a>
+                        <span style="color:var(--text-muted);font-size:12px;">VPS version live in ~1 week</span>
                     </div>
                 </div>
+
+                <!-- AlexBET Sharp -->
                 <div class="product-card animate-on-scroll">
                     <div class="product-icon">🎯</div>
-                    <h3>Smart Alerts</h3>
-                    <p>Instant notifications when value opportunities emerge. Our algorithms monitor line movements and detect mispriced odds across 50+ bookmakers.</p>
+                    <h3>AlexBET Sharp</h3>
+                    <p>Professional +EV edge detection bot on Telegram. Scans NFL, NBA, MLB, NHL, ATP, and EPL for positive expected value opportunities. Powered by Claude AI with Kelly Criterion stake sizing.</p>
                     <div class="product-features">
-                        <span class="feature-tag">Real-time</span>
-                        <span class="feature-tag">Arbitrage</span>
-                        <span class="feature-tag">Value Bets</span>
+                        <span class="feature-tag">Telegram Bot</span>
+                        <span class="feature-tag">+EV Scanner</span>
+                        <span class="feature-tag">Kelly Criterion</span>
+                        <span class="feature-tag accent-green">Freemium</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="#pricing" class="btn-small-primary">See Pricing</a>
+                        <a href="https://t.me/alexbetsharpbot" target="_blank" class="btn-small-secondary">Open in Telegram</a>
                     </div>
                 </div>
+
+                <!-- AlexBET Lite -->
                 <div class="product-card animate-on-scroll">
-                    <div class="product-icon">📈</div>
-                    <h3>Portfolio Tracker</h3>
-                    <p>Monitor your betting portfolio with bankroll analytics, ROI tracking, variance analysis, and sharpe ratio calculations for disciplined growth.</p>
+                    <div class="product-icon">📊</div>
+                    <h3>AlexBET Lite</h3>
+                    <p>Free, open-source sports betting tracker. Monitor line movements, identify value, track bankroll, and analyze performance across NBA, NFL, MLB, NHL, EPL, and ATP. Runs entirely in the browser.</p>
                     <div class="product-features">
-                        <span class="feature-tag">Bankroll</span>
-                        <span class="feature-tag">ROI</span>
-                        <span class="feature-tag">Reports</span>
+                        <span class="feature-tag accent-green">Free</span>
+                        <span class="feature-tag">MIT License</span>
+                        <span class="feature-tag">Open Source</span>
+                        <span class="feature-tag">No Backend</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="https://alexbet-lite.netlify.app" target="_blank" class="btn-small-primary">Live Demo</a>
+                        <a href="https://github.com/oddsifylabs/alexbet-lite" target="_blank" class="btn-small-secondary">GitHub</a>
                     </div>
                 </div>
-                <div class="product-card animate-on-scroll">
-                    <div class="product-icon">🔐</div>
-                    <h3>Enterprise API</h3>
-                    <p>Integrate our analytics engine directly into your applications. RESTful API with sub-100ms latency, full documentation, and 99.9% uptime SLA.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">REST API</span>
-                        <span class="feature-tag">WebSocket</span>
-                        <span class="feature-tag">SDKs</span>
-                    </div>
-                </div>
-                <div class="product-card animate-on-scroll">
-                    <div class="product-icon">🏆</div>
-                    <h3>Expert Reports</h3>
-                    <p>Weekly deep-dive reports from quant analysts and former oddsmakers. Market inefficiencies, injury impact models, and situational spot analysis.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">Weekly</span>
-                        <span class="feature-tag">Deep Dive</span>
-                        <span class="feature-tag">Expert</span>
-                    </div>
-                </div>
+
+                <!-- BetAnalyzer Bot -->
                 <div class="product-card animate-on-scroll">
                     <div class="product-icon">🤖</div>
-                    <h3>AI Predictions</h3>
-                    <p>Machine learning models trained on 10+ years of historical data. Ensemble approach combining neural nets, gradient boosting, and market sentiment.</p>
+                    <h3>BetAnalyzer Bot</h3>
+                    <p>Upload your picks via CSV and get instant Claude AI recommendations. Track performance stats, win rates, and bankroll over time. The simplest way to audit your betting decisions.</p>
                     <div class="product-features">
-                        <span class="feature-tag">ML Models</span>
-                        <span class="feature-tag">Ensemble</span>
-                        <span class="feature-tag">Backtested</span>
+                        <span class="feature-tag">Telegram</span>
+                        <span class="feature-tag">CSV Upload</span>
+                        <span class="feature-tag">AI Recommendations</span>
+                        <span class="feature-tag accent-green">Free</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="https://github.com/oddsifylabs/betanalyzer-bot" target="_blank" class="btn-small-secondary">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Edge Unit -->
+                <div class="product-card animate-on-scroll">
+                    <div class="product-icon">⚡</div>
+                    <h3>Edge Unit <span class="coming-soon-badge">Pre-Order</span></h3>
+                    <p>AI Local Hermes Agent mini computer — and its cloud twin. Run your agents, bots, and models on dedicated hardware or a managed VPS. Built for bettors who want control without the sysadmin headache.</p>
+                    <div class="product-features">
+                        <span class="feature-tag">Mini PC</span>
+                        <span class="feature-tag">VPS Option</span>
+                        <span class="feature-tag">Hermes Ready</span>
+                        <span class="feature-tag">Local AI</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="#contact" class="btn-small-primary">Pre-Order</a>
+                        <span style="color:var(--text-muted);font-size:12px;">Ships in ~1 month</span>
+                    </div>
+                </div>
+
+                <!-- HAMH -->
+                <div class="product-card animate-on-scroll">
+                    <div class="product-icon">🧠</div>
+                    <h3>HAMH</h3>
+                    <p>Hermes Agent Management Hub. The open-source command center for running multiple AI agents. Task orchestration, real-time monitoring, and centralized control. You got the agents — we got the boss.</p>
+                    <div class="product-features">
+                        <span class="feature-tag accent-green">Free</span>
+                        <span class="feature-tag">MIT License</span>
+                        <span class="feature-tag">Open Source</span>
+                        <span class="feature-tag">Node.js</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="https://github.com/oddsifylabs/hamh" target="_blank" class="btn-small-secondary">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Knowledge Products -->
+    <section id="knowledge" class="stats-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">Knowledge</div>
+                <h2>Guides, Ebooks & Templates</h2>
+                <p>Field-tested systems written by bettors, for bettors. No theory for theory's sake — every page is built to make you sharper.</p>
+            </div>
+            <div class="knowledge-grid">
+                <div class="knowledge-card animate-on-scroll">
+                    <h4>🐢 Closing Line Value</h4>
+                    <p>The Complete Sports Betting System. Disciplined methodology covering edge detection, bankroll management, psychology, and a 5-tier progression tracker from Recruit to Legion Verified.</p>
+                    <div class="knowledge-meta">
+                        <a href="#contact" class="store-link">Amazon →</a>
+                        <a href="#contact" class="store-link">Whop →</a>
+                        <a href="#contact" class="store-link">Gumroad →</a>
+                    </div>
+                </div>
+                <div class="knowledge-card animate-on-scroll">
+                    <h4>📈 Turtle Trading System</h4>
+                    <p>Professional trading methodology meets modern sports betting. Complete masterbook with AlexBET Sharp Bot integration, 15+ formulas, position sizing, and real market examples.</p>
+                    <div class="knowledge-meta">
+                        <a href="#contact" class="store-link">Amazon →</a>
+                        <a href="#contact" class="store-link">Whop →</a>
+                        <a href="#contact" class="store-link">Gumroad →</a>
+                    </div>
+                </div>
+                <div class="knowledge-card animate-on-scroll">
+                    <h4>📖 The Turtle Doctrine</h4>
+                    <p>A field manual for mathematical sports betting. Compact, aggressive, and designed to be read before you place your next bet. The mindset companion to the system.</p>
+                    <div class="knowledge-meta">
+                        <a href="#contact" class="store-link">Amazon →</a>
+                        <a href="#contact" class="store-link">Whop →</a>
+                        <a href="#contact" class="store-link">Gumroad →</a>
+                    </div>
+                </div>
+                <div class="knowledge-card animate-on-scroll">
+                    <h4>🤖 Vibe Coder's Bot Playbook</h4>
+                    <p>Build Telegram bots with AI, no-code platforms, and zero JavaScript experience. A build-along guide for beginners who want to ship, not study. Deploy to Vercel in 15 minutes.</p>
+                    <div class="knowledge-meta">
+                        <a href="#contact" class="store-link">Amazon →</a>
+                        <a href="#contact" class="store-link">Whop →</a>
+                        <a href="#contact" class="store-link">Gumroad →</a>
                     </div>
                 </div>
             </div>
@@ -1147,28 +478,28 @@
     </section>
 
     <!-- How It Works -->
-    <section id="services" class="stats-section">
+    <section id="services">
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <div class="section-tag">How It Works</div>
-                <h2>From Data to Edge in 3 Steps</h2>
-                <p>Our platform abstracts away the complexity of quantitative sports analysis. You get clean, actionable signals.</p>
+                <h2>From Idea to Edge</h2>
+                <p>We build tools we'd actually bet with. Every product starts from a real problem at the window.</p>
             </div>
             <div class="services-grid">
                 <div class="service-card animate-on-scroll">
                     <div class="service-number">01</div>
-                    <h3>Ingest</h3>
-                    <p>We aggregate data from 200+ sources — bookmaker odds, player tracking, weather, injuries, historical results, and market sentiment — in real time.</p>
+                    <h3>Build</h3>
+                    <p>We prototype fast, test in production, and iterate based on real market data. If it doesn't survive a Saturday slate, it doesn't ship.</p>
                 </div>
                 <div class="service-card animate-on-scroll">
                     <div class="service-number">02</div>
-                    <h3>Analyze</h3>
-                    <p>Our models process millions of data points through ensemble ML pipelines to identify inefficiencies, expected value, and situational edges.</p>
+                    <h3>Open Source</h3>
+                    <p>Core tools like AlexBET Lite and HAMH are MIT-licensed and free forever. Community contributions make them stronger than anything closed-source.</p>
                 </div>
                 <div class="service-card animate-on-scroll">
                     <div class="service-number">03</div>
-                    <h3>Execute</h3>
-                    <p>Receive instant alerts via mobile, email, or API webhook. Place smarter bets with confidence intervals, stake sizing, and risk management built in.</p>
+                    <h3>Monetize Ethically</h3>
+                    <p>Premium tiers for power users — bots with AI, terminals with local data, hardware for the paranoid. No paywalls on fundamentals.</p>
                 </div>
             </div>
         </div>
@@ -1179,20 +510,39 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-box animate-on-scroll">
-                    <div class="stat-box-number" data-count="10" data-suffix="M+">0</div>
-                    <div class="stat-box-label">Data Points / Day</div>
+                    <div class="stat-box-number" data-count="6" data-suffix="">0</div>
+                    <div class="stat-box-label">Active Repos</div>
                 </div>
                 <div class="stat-box animate-on-scroll">
-                    <div class="stat-box-number" data-count="47" data-suffix="ms">0</div>
-                    <div class="stat-box-label">Avg. API Latency</div>
+                    <div class="stat-box-number" data-count="4" data-suffix="">0</div>
+                    <div class="stat-box-label">Knowledge Products</div>
                 </div>
                 <div class="stat-box animate-on-scroll">
-                    <div class="stat-box-number" data-count="200" data-suffix="+">0</div>
-                    <div class="stat-box-label">Data Sources</div>
+                    <div class="stat-box-number" data-count="2" data-suffix="">0</div>
+                    <div class="stat-box-label">MIT Projects</div>
                 </div>
                 <div class="stat-box animate-on-scroll">
-                    <div class="stat-box-number" data-count="4.8" data-suffix="/5">0</div>
-                    <div class="stat-box-label">Customer Rating</div>
+                    <div class="stat-box-number" data-count="1" data-suffix="">0</div>
+                    <div class="stat-box-label">Hardware Line</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Source -->
+    <section id="open-source">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">Open Source</div>
+                <h2>Free Forever. MIT Licensed.</h2>
+                <p>We believe core betting infrastructure should be open. Fork it, modify it, sell it — we don't care. Just build something useful.</p>
+            </div>
+            <div class="opensource-banner animate-on-scroll">
+                <h3>🚀 AlexBET Lite & HAMH</h3>
+                <p>Both projects are MIT-licensed, actively maintained, and open for community contributions. AlexBET Lite is a zero-backend tracker. HAMH is your agent command center.</p>
+                <div class="opensource-links">
+                    <a href="https://github.com/oddsifylabs/alexbet-lite" target="_blank" class="btn btn-secondary">AlexBET Lite on GitHub</a>
+                    <a href="https://github.com/oddsifylabs/hamh" target="_blank" class="btn btn-secondary">HAMH on GitHub</a>
                 </div>
             </div>
         </div>
@@ -1203,55 +553,54 @@
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <div class="section-tag">Pricing</div>
-                <h2>Simple, Transparent Pricing</h2>
-                <p>Start free, scale as you grow. No hidden fees, no long-term contracts. Cancel anytime.</p>
+                <h2>AlexBET Sharp Tiers</h2>
+                <p>Start free. Upgrade when you're ready to stop leaving money on the table.</p>
             </div>
             <div class="pricing-grid">
                 <div class="pricing-card animate-on-scroll">
-                    <div class="pricing-name">Starter</div>
-                    <div class="pricing-desc">For casual bettors getting started</div>
+                    <div class="pricing-name">Free</div>
+                    <div class="pricing-desc">For casual bettors testing the water</div>
                     <div class="pricing-price">$0<span>/month</span></div>
                     <ul class="pricing-features">
-                        <li>Basic odds comparison</li>
-                        <li>5 leagues coverage</li>
-                        <li>Email alerts</li>
+                        <li>1 scan per day</li>
+                        <li>All 6 sports</li>
+                        <li>Basic edge scores</li>
                         <li>Community support</li>
-                        <li>1 API key</li>
                     </ul>
-                    <button class="pricing-btn pricing-btn-secondary">Get Started</button>
+                    <a href="https://t.me/alexbetsharpbot" target="_blank" class="pricing-btn pricing-btn-secondary">Start on Telegram</a>
                 </div>
                 <div class="pricing-card popular animate-on-scroll">
                     <div class="popular-badge">Most Popular</div>
                     <div class="pricing-name">Pro</div>
-                    <div class="pricing-desc">For serious bettors and syndicates</div>
-                    <div class="pricing-price">$49<span>/month</span></div>
+                    <div class="pricing-desc">For bettors who want an edge every day</div>
+                    <div class="pricing-price">$9.99<span>/month</span></div>
                     <ul class="pricing-features">
-                        <li>Everything in Starter</li>
-                        <li>All 52 leagues</li>
-                        <li>Real-time alerts</li>
-                        <li>Portfolio tracker</li>
-                        <li>AI predictions</li>
+                        <li>Unlimited scans</li>
+                        <li>Claude AI analysis</li>
+                        <li>Kelly Criterion sizing</li>
+                        <li>CSV/JSON/TXT export</li>
+                        <li>Performance stats</li>
                         <li>Priority support</li>
-                        <li>5 API keys</li>
                     </ul>
-                    <button class="pricing-btn pricing-btn-primary">Start Free Trial</button>
+                    <a href="#contact" class="pricing-btn pricing-btn-primary">Upgrade to Pro</a>
                 </div>
                 <div class="pricing-card animate-on-scroll">
-                    <div class="pricing-name">Enterprise</div>
-                    <div class="pricing-desc">For funds and platforms</div>
-                    <div class="pricing-price">Custom</div>
+                    <div class="pricing-name">Elite</div>
+                    <div class="pricing-desc">One payment. Lifetime access. No regrets.</div>
+                    <div class="pricing-price">$999<span> lifetime</span></div>
                     <ul class="pricing-features">
                         <li>Everything in Pro</li>
-                        <li>Custom ML models</li>
-                        <li>Dedicated infrastructure</li>
-                        <li>SLA guarantee</li>
-                        <li>White-label options</li>
-                        <li>Account manager</li>
-                        <li>Unlimited API keys</li>
+                        <li>Private Telegram channel</li>
+                        <li>Beta features first</li>
+                        <li>Direct line to the team</li>
+                        <li>Future product access</li>
                     </ul>
-                    <button class="pricing-btn pricing-btn-secondary">Contact Sales</button>
+                    <a href="#contact" class="pricing-btn pricing-btn-secondary">Go Elite</a>
                 </div>
             </div>
+            <p style="text-align:center;color:var(--text-muted);margin-top:40px;font-size:14px;">
+                AlexBET Terminal and Edge Unit pricing available on request. <a href="#contact" style="color:var(--accent-light);text-decoration:none;">Contact us →</a>
+            </p>
         </div>
     </section>
 
@@ -1260,8 +609,8 @@
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <div class="section-tag">Testimonials</div>
-                <h2>Trusted by Professionals</h2>
-                <p>Hear from traders, syndicates, and platforms who rely on Oddsify daily.</p>
+                <h2>Trusted by Sharp Bettors</h2>
+                <p>Real users. Real edge. Real returns.</p>
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card animate-on-scroll">
@@ -1269,32 +618,23 @@
                     <p class="testimonial-text">"The arbitrage detection alone paid for my Pro subscription in the first week. The latency on line movements is faster than anything else I've tested."</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">MR</div>
-                        <div>
-                            <div class="testimonial-name">Marcus Reid</div>
-                            <div class="testimonial-role">Professional Bettor, London</div>
-                        </div>
+                        <div><div class="testimonial-name">Marcus Reid</div><div class="testimonial-role">Professional Bettor, London</div></div>
                     </div>
                 </div>
                 <div class="testimonial-card animate-on-scroll">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"We integrated the Enterprise API into our trading desk. Sub-50ms odds updates and the webhook reliability is rock solid. Support team is elite."</p>
+                    <p class="testimonial-text">"Closing Line Value changed how I think about betting. The tier tracker kept me honest. 300 bets in and my CLV is finally positive."</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">SK</div>
-                        <div>
-                            <div class="testimonial-name">Sarah Kim</div>
-                            <div class="testimonial-role">CTO, BetFlow Capital</div>
-                        </div>
+                        <div><div class="testimonial-name">Sarah Kim</div><div class="testimonial-role">Quant Trader, NYC</div></div>
                     </div>
                 </div>
                 <div class="testimonial-card animate-on-scroll">
                     <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"The portfolio tracker changed how I manage bankroll. Seeing my actual edge vs. variance over time helped me size bets way more intelligently."</p>
+                    <p class="testimonial-text">"Built my first Telegram bot using the Vibe Coder's Playbook in a weekend. Zero JS experience. Now it handles 200+ users daily."</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">JD</div>
-                        <div>
-                            <div class="testimonial-name">James Diaz</div>
-                            <div class="testimonial-role">Quant Trader, NYC</div>
-                        </div>
+                        <div><div class="testimonial-name">James Diaz</div><div class="testimonial-role">Indie Developer, Miami</div></div>
                     </div>
                 </div>
             </div>
@@ -1307,33 +647,26 @@
             <div class="contact-grid">
                 <div class="contact-info animate-on-scroll">
                     <h3>Let's Talk</h3>
-                    <p>Whether you're a solo trader or running a fund, we'd love to hear what you're building. Reach out and we'll get back within 24 hours.</p>
+                    <p>Questions about Terminal access, Edge Unit pre-orders, or enterprise licensing? We read every message and reply within 24 hours.</p>
                     <div class="contact-method">
                         <div class="contact-icon">📧</div>
-                        <div>
-                            <strong>Email</strong><br>
-                            <span>contact@oddsifylabs.com</span>
-                        </div>
+                        <div><strong>Email</strong><br><span>general@oddsifylabs.com</span></div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">🐦</div>
+                        <div><strong>Twitter / X</strong><br><span>@AlexBetTerminal</span></div>
                     </div>
                     <div class="contact-method">
                         <div class="contact-icon">💬</div>
-                        <div>
-                            <strong>Discord Community</strong><br>
-                            <span>discord.gg/oddsify</span>
-                        </div>
+                        <div><strong>Telegram</strong><br><span>@oddsifylabs</span></div>
                     </div>
                     <div class="contact-method">
                         <div class="contact-icon">📍</div>
-                        <div>
-                            <strong>HQ</strong><br>
-                            <span>New York, NY / London, UK</span>
-                        </div>
+                        <div><strong>HQ</strong><br><span>Phoenix, AZ</span></div>
                     </div>
                 </div>
                 <div class="contact-form animate-on-scroll">
-                    <div class="form-success" id="successMessage">
-                        <span>✓</span> Message sent! We'll be in touch soon.
-                    </div>
+                    <div class="form-success" id="successMessage"><span>✓</span> Message sent! We'll be in touch soon.</div>
                     <form id="contactForm" onsubmit="handleSubmit(event)">
                         <div class="form-group">
                             <label for="name">Full Name</label>
@@ -1344,17 +677,20 @@
                             <input type="email" id="email" name="email" placeholder="john@example.com" required>
                         </div>
                         <div class="form-group">
-                            <label for="plan">Interested In</label>
-                            <select id="plan" name="plan">
-                                <option value="">Select a plan...</option>
-                                <option value="starter">Starter (Free)</option>
-                                <option value="pro">Pro ($49/mo)</option>
-                                <option value="enterprise">Enterprise (Custom)</option>
+                            <label for="interest">Interested In</label>
+                            <select id="interest" name="interest">
+                                <option value="">Select one...</option>
+                                <option value="terminal-waitlist">AlexBET Terminal — Waitlist</option>
+                                <option value="edge-preorder">Edge Unit — Pre-Order</option>
+                                <option value="sharp-pro">AlexBET Sharp — Pro/Elite</option>
+                                <option value="ebook">Knowledge Product</option>
+                                <option value="enterprise">Enterprise / Licensing</option>
+                                <option value="other">Something Else</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Tell us about your use case..." required></textarea>
+                            <textarea id="message" name="message" placeholder="Tell us what you're building..." required></textarea>
                         </div>
                         <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
                     </form>
@@ -1369,211 +705,90 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="logo">Oddsify</div>
-                    <p>Advanced sports analytics and betting intelligence for professionals. Data-driven decisions, delivered in real time.</p>
+                    <p>Software, hardware, and knowledge for the sports betting community. Built by bettors, for bettors.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Product</h4>
+                    <h4>Products</h4>
                     <ul>
-                        <li><a href="#products">Analytics</a></li>
-                        <li><a href="#products">Smart Alerts</a></li>
-                        <li><a href="#products">Portfolio Tracker</a></li>
-                        <li><a href="#products">API</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#products">AlexBET Terminal</a></li>
+                        <li><a href="#products">AlexBET Sharp</a></li>
+                        <li><a href="#products">AlexBET Lite</a></li>
+                        <li><a href="#products">Edge Unit</a></li>
+                        <li><a href="#products">HAMH</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Knowledge</h4>
+                    <ul>
+                        <li><a href="#knowledge">Closing Line Value</a></li>
+                        <li><a href="#knowledge">Turtle Trading System</a></li>
+                        <li><a href="#knowledge">The Turtle Doctrine</a></li>
+                        <li><a href="#knowledge">Vibe Coder's Playbook</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Careers</a></li>
+                        <li><a href="https://github.com/oddsifylabs" target="_blank">GitHub</a></li>
+                        <li><a href="https://twitter.com/AlexBetTerminal" target="_blank">Twitter / X</a></li>
                         <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#open-source">Open Source</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>© 2026 Oddsify Labs. All rights reserved.</p>
-                <p>Built for serious bettors. Bet responsibly.</p>
+                <p>Bet responsibly. Built for serious bettors.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Canvas background animation
+        // Canvas particles
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        let mouseX = 0, mouseY = 0;
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resizeCanvas(); window.addEventListener('resize', resizeCanvas);
         class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.3;
-                this.speedY = (Math.random() - 0.5) * 0.3;
-                this.opacity = Math.random() * 0.5 + 0.1;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.y < 0) this.y = canvas.height;
-                if (this.y > canvas.height) this.y = 0;
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(59, 130, 246, ${this.opacity})`;
-                ctx.fill();
-            }
+            constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*2+0.5; this.speedX = (Math.random()-0.5)*0.3; this.speedY = (Math.random()-0.5)*0.3; this.opacity = Math.random()*0.5+0.1; }
+            update() { this.x += this.speedX; this.y += this.speedY; if(this.x<0)this.x=canvas.width; if(this.x>canvas.width)this.x=0; if(this.y<0)this.y=canvas.height; if(this.y>canvas.height)this.y=0; }
+            draw() { ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fillStyle=`rgba(59,130,246,${this.opacity})`; ctx.fill(); }
         }
-
-        for (let i = 0; i < 80; i++) {
-            particles.push(new Particle());
-        }
-
-        function drawConnections() {
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 150) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(59, 130, 246, ${0.1 * (1 - distance / 150)})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        function animateCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
-            drawConnections();
-            requestAnimationFrame(animateCanvas);
-        }
+        for(let i=0;i<80;i++) particles.push(new Particle());
+        function drawConnections() { for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++) { const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, d=Math.sqrt(dx*dx+dy*dy); if(d<150){ ctx.beginPath(); ctx.strokeStyle=`rgba(59,130,246,${0.1*(1-d/150)})`; ctx.lineWidth=0.5; ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.stroke(); } } }
+        function animateCanvas() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); drawConnections(); requestAnimationFrame(animateCanvas); }
         animateCanvas();
 
-        // Navbar scroll effect
+        // Navbar scroll
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+        window.addEventListener('scroll', () => { if(window.scrollY>50) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled'); });
 
         // Mobile menu
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
 
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
-        });
+        // Intersection Observer
+        const observer = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }); }, {threshold:0.1, rootMargin:'0px 0px -50px 0px'});
+        document.querySelectorAll('.animate-on-scroll').forEach(el=>observer.observe(el));
 
         // Animated counters
         function animateCounters() {
-            const counters = document.querySelectorAll('.hero-stat-number, .stat-box-number');
-            counters.forEach(counter => {
-                const target = parseFloat(counter.dataset.count);
-                const suffix = counter.dataset.suffix || '';
-                const prefix = counter.dataset.prefix || '';
-                const duration = 2000;
-                const start = performance.now();
-                const isFloat = target % 1 !== 0;
-
-                function update(currentTime) {
-                    const elapsed = currentTime - start;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const ease = 1 - Math.pow(1 - progress, 3);
-                    const current = target * ease;
-                    counter.textContent = prefix + (isFloat ? current.toFixed(1) : Math.floor(current).toLocaleString()) + suffix;
-                    if (progress < 1) {
-                        requestAnimationFrame(update);
-                    }
-                }
+            document.querySelectorAll('.hero-stat-number, .stat-box-number').forEach(counter=>{
+                const target=parseFloat(counter.dataset.count), suffix=counter.dataset.suffix||'', prefix=counter.dataset.prefix||'', duration=2000, start=performance.now(), isFloat=target%1!==0;
+                function update(t){ const elapsed=t-start, p=Math.min(elapsed/duration,1), ease=1-Math.pow(1-p,3), cur=target*ease; counter.textContent=prefix+(isFloat?cur.toFixed(1):Math.floor(cur).toLocaleString())+suffix; if(p<1) requestAnimationFrame(update); }
                 requestAnimationFrame(update);
             });
         }
-
-        // Trigger counters when hero is visible
-        const heroObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    heroObserver.disconnect();
-                }
-            });
-        }, { threshold: 0.3 });
+        const heroObserver = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ animateCounters(); heroObserver.disconnect(); } }); }, {threshold:0.3});
         heroObserver.observe(document.querySelector('.hero'));
 
         // Contact form
-        function handleSubmit(event) {
-            event.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            const success = document.getElementById('successMessage');
-            const form = document.getElementById('contactForm');
-
-            btn.disabled = true;
-            btn.textContent = 'Sending...';
-
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                plan: document.getElementById('plan').value,
-                message: document.getElementById('message').value,
-                timestamp: new Date().toISOString()
-            };
-
-            // Simulate send
-            setTimeout(() => {
-                success.classList.add('visible');
-                form.reset();
-                btn.disabled = false;
-                btn.textContent = 'Send Message';
-                console.log('Form submitted:', formData);
-
-                setTimeout(() => {
-                    success.classList.remove('visible');
-                }, 5000);
-            }, 1200);
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn=document.getElementById('submitBtn'), success=document.getElementById('successMessage'), form=document.getElementById('contactForm');
+            btn.disabled=true; btn.textContent='Sending...';
+            const formData={ name:document.getElementById('name').value, email:document.getElementById('email').value, interest:document.getElementById('interest').value, message:document.getElementById('message').value, timestamp:new Date().toISOString() };
+            setTimeout(()=>{ success.classList.add('visible'); form.reset(); btn.disabled=false; btn.textContent='Send Message'; console.log('Form submitted:', formData); setTimeout(()=>success.classList.remove('visible'),5000); },1200);
         }
     </script>
 </body>
